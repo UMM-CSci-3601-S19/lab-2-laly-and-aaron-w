@@ -1,4 +1,4 @@
 package umm3601.todos;
 
-public class Todos {
+public class Todo {
 }
