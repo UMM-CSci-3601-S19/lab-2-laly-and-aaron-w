@@ -10,4 +10,12 @@ import java.io.IOException;
 import static umm3601.Util.*;
 
 public class TodosController {
+
+  private final Gson gson;
+  private TodosDatabase database;
+
+  public TodosController(TodosDatabase database) {
+    gson = new Gson();
+    this.database = database;
+  }
 }
