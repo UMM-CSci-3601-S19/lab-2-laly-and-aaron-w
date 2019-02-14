@@ -18,4 +18,16 @@ public class TodosController {
     gson = new Gson();
     this.database = database;
   }
+
+  public JsonObject getTodo(Request req, Response res) {
+    res.type("application/json");
+    String id = req.params("id");
+    Todo todo = database.getTodo(id);
+    if (todo != null) {
+      return buildSuccessJsonResponse("todo", gson.toJsonTree(todo));
+    } else {
+      String message = "Todo with ID " + id + " wasn't found.";
+      return buildFailJsonResponse("id", message);
+    }
+  }
 }
