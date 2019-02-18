@@ -25,4 +25,8 @@ public class TodosDatabase {
     return allTodos;
   }
 
+  public Todo[] getTodosByLimit(Todo[] todos, long limit) {
+    return Arrays.stream(todos).limit(limit).toArray(Todo[]::new);
+  }
+
 }
