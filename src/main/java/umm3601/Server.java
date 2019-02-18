@@ -5,6 +5,8 @@ import spark.Request;
 import spark.Response;
 import umm3601.user.Database;
 import umm3601.user.UserController;
+import umm3601.todos.TodosDatabase;
+import umm3601.todos.TodosController;
 
 import java.io.IOException;
 
@@ -14,12 +16,15 @@ import static spark.debug.DebugScreen.*;
 public class Server {
 
   public static final String USER_DATA_FILE = "src/main/data/users.json";
+  public static final String TODO_DATA_FILE = "src/main/data/todos.json";
   private static Database userDatabase;
+  private static TodosDatabase todosDatabase;
 
   public static void main(String[] args) {
 
     // Initialize dependencies
     UserController userController = buildUserController();
+    TodosController todosController = buildTodosController();
 
     // Configure Spark
     port(4567);
@@ -41,6 +46,7 @@ public class Server {
     get("api/users/:id", userController::getUser);
     // List users, filtered using query parameters
     get("api/users", userController::getUsers);
+    get("api/todos", todosController::getTodos);
 
     // An example of throwing an unhandled exception so you can see how the
     // Java Spark debugger displays errors like this.
@@ -82,6 +88,24 @@ public class Server {
     }
 
     return userController;
+  }
+
+  private static TodosController buildTodosController() {
+    TodosController todosController = null;
+
+    try {
+      todosDatabase = new TodosDatabase(TODO_DATA_FILE);
+      todosController = new TodosController(todosDatabase);
+    } catch (IOException e) {
+      System.err.println("The server failed to load the todo data; shutting down.");
+      e.printStackTrace(System.err);
+
+      // Shut the server down
+      stop();
+      System.exit(1);
+    }
+
+    return todosController;
   }
 
   // Enable GZIP for all responses
