@@ -9,6 +9,14 @@ function getAllTodos() {
   });
 }
 
+function getLimitedTodos() {
+  console.log("Getting a limited number of todos.");
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?limit=" + document.getElementById("limit").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
 function HttpClient() {
   // We'll take a URL string, and a callback function.
   this.get = function (aUrl, aCallback) {

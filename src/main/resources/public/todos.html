@@ -12,6 +12,8 @@
 <hr/>
 <div id="jsonDump" style="margin-top:20px"> Json will go here</div>
 
+<label for="limit">limit:</label><input id="limit" type="text" name="limit">
+<button type="button" id="getLimit"> get a limited number of todos</button>
 
 <script>
   window.onload = function () {
@@ -20,8 +22,8 @@
     var element = document.getElementById('getAll');
     element.addEventListener("click", getAllTodos, true);
 
-    /*element = document.getElementById('getUsersByAge');
-    element.addEventListener("click", getAllUsersByAge, true);*/
+    element = document.getElementById('getLimit');
+    element.addEventListener("click", getLimitedTodos, true);
   }
 </script>
 </body>
