@@ -7,6 +7,8 @@ import com.google.gson.Gson;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static javax.xml.bind.DatatypeConverter.parseBoolean;
+
 public class TodosDatabase {
 
   private Todo[] allTodos;
@@ -27,11 +29,27 @@ public class TodosDatabase {
       long limit = Long.parseLong(queryParams.get("limit")[0]);
       filteredTodos = getTodosByLimit(filteredTodos, limit);
     }
+    if (queryParams.containsKey("status")) {
+      //filteredTodos = getCompleteTodos(filteredTodos, queryParams.get("status")[0]);
+      if (Boolean.parseBoolean(queryParams.get("status")[0])) {
+        filteredTodos = getCompleteTodos(filteredTodos);
+      } if (!Boolean.parseBoolean(queryParams.get("status")[0])) {
+        filteredTodos = getIncompleteTodos(filteredTodos);
+      }
+    }
     return filteredTodos;
   }
 
   public Todo[] getTodosByLimit(Todo[] todos, long limit) {
     return Arrays.stream(todos).limit(limit).toArray(Todo[]::new);
+  }
+
+  public Todo[] getCompleteTodos(Todo[] todos) {
+    return Arrays.stream(todos).filter(x -> x.status).toArray(Todo[]::new);
+  }
+
+  public Todo[] getIncompleteTodos(Todo[] todos) {
+    return Arrays.stream(todos).filter(x -> !x.status).toArray(Todo[]::new);
   }
 
 }
