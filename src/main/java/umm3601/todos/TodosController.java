@@ -30,4 +30,11 @@ public class TodosController {
       return buildFailJsonResponse("id", message);
     }
   }
+
+  public JsonObject getTodos(Request req, Response res) {
+    res.type("application/json");
+    Todo[] todos = database.listTodos(req.queryMap().toMap());
+    return buildSuccessJsonResponse("todos", gson.toJsonTree(todos));
+  }
+
 }
