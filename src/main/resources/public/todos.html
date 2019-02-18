@@ -16,6 +16,7 @@
 <button type="button" id="getLimit"> get a limited number of todos</button>
 
 <label for="status">status:</label><input id="status" type="text" name="status">
+<button type="button" id="getStatus"> get the status of todos</button>
 <script>
   window.onload = function () {
     console.log("The page is loaded now!");
@@ -25,6 +26,9 @@
 
     element = document.getElementById('getLimit');
     element.addEventListener("click", getLimitedTodos, true);
+
+    element = document.getElementById('getStatus');
+    element.addEventListener("click", getStatusTodos, true);
   }
 </script>
 </body>
