@@ -23,6 +23,9 @@ public class TodosDatabase {
 
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodos = allTodos;
+    if (queryParams.containsKey("contains")) {
+      filteredTodos = getTodosByBodyString(filteredTodos, queryParams.get("contains")[0]);
+    }
     if (queryParams.containsKey("limit")) {
       long limit = Long.parseLong(queryParams.get("limit")[0]);
       filteredTodos = getTodosByLimit(filteredTodos, limit);
@@ -32,6 +35,10 @@ public class TodosDatabase {
 
   public Todo[] getTodosByLimit(Todo[] todos, long limit) {
     return Arrays.stream(todos).limit(limit).toArray(Todo[]::new);
+  }
+
+  public Todo[] getTodosByBodyString(Todo[] todos, String search) {
+    return Arrays.stream(todos).filter(x -> x.body.contains(search)).toArray(Todo[]::new);
   }
 
 }
