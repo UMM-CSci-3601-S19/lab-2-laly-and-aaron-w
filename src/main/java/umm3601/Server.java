@@ -46,6 +46,7 @@ public class Server {
     get("api/users/:id", userController::getUser);
     // List users, filtered using query parameters
     get("api/users", userController::getUsers);
+    get("api/todos/:id", todosController::getTodo);
     get("api/todos", todosController::getTodos);
 
     // An example of throwing an unhandled exception so you can see how the
