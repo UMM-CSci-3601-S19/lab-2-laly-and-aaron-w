@@ -22,7 +22,12 @@ public class TodosDatabase {
   }
 
   public Todo[] listTodos(Map<String, String[]> queryParams) {
-    return allTodos;
+    Todo[] filteredTodos = allTodos;
+    if (queryParams.containsKey("limit")) {
+      long limit = Long.parseLong(queryParams.get("limit")[0]);
+      filteredTodos = getTodosByLimit(filteredTodos, limit);
+    }
+    return filteredTodos;
   }
 
   public Todo[] getTodosByLimit(Todo[] todos, long limit) {
