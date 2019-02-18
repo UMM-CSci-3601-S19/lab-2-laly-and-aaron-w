@@ -17,6 +17,14 @@ function getLimitedTodos() {
   });
 }
 
+function getBodyString() {
+  console.log("Getting todos whose bodies contain a given string.");
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?contains=" + document.getElementById("contains").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
 function HttpClient() {
   // We'll take a URL string, and a callback function.
   this.get = function (aUrl, aCallback) {

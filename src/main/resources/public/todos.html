@@ -15,6 +15,9 @@
 <label for="limit">limit:</label><input id="limit" type="text" name="limit">
 <button type="button" id="getLimit"> get a limited number of todos</button>
 
+<label for="contains">contains:</label><input id="contains" type="text" name="contains">
+<button type="button" id="searchBody"> search todo body</button>
+
 <script>
   window.onload = function () {
     console.log("The page is loaded now!");
@@ -24,6 +27,9 @@
 
     element = document.getElementById('getLimit');
     element.addEventListener("click", getLimitedTodos, true);
+
+    element = document.getElementById('searchBody');
+    element.addEventListener("click", getBodyString, true);
   }
 </script>
 </body>
