@@ -33,6 +33,22 @@ function getStatusTodos() {
   });
 }
 
+function getCategoryTodos() {
+  console.log("Get todos by category.");
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?category=" + document.getElementById("category").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
+function getOwnerTodos() {
+  console.log("Get todos by owner.");
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?owner=" + document.getElementById("owner").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
 function HttpClient() {
   // We'll take a URL string, and a callback function.
   this.get = function (aUrl, aCallback) {
