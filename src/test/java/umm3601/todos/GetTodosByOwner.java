@@ -17,6 +17,7 @@ public class GetTodosByOwner {
     for (Todo todo:todos) {
       assertEquals("Incorrect owner", "Roberta", todo.owner);
     }
+    assertEquals("Incorrect length", 46, todos.length);
   }
 
   @Test
@@ -27,5 +28,6 @@ public class GetTodosByOwner {
     for (Todo todo:todos) {
       assertEquals("Incorrect owner", "Blanche", todo.owner);
     }
+    assertEquals("Incorrect length", 43, todos.length);
   }
 }

@@ -17,6 +17,7 @@ public class GetTodosByCategory {
     for (Todo todo:todos) {
       assertEquals("Incorrect category", "homework", todo.category);
     }
+    assertEquals("Incorrect length", 79, todos.length);
   }
 
   @Test
@@ -27,5 +28,6 @@ public class GetTodosByCategory {
     for (Todo todo : todos) {
       assertEquals("Incorrect category", "groceries", todo.category);
     }
+    assertEquals("Incorrect length", 76, todos.length);
   }
 }
