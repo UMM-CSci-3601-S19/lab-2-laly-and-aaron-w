@@ -27,6 +27,8 @@
 <label for="category">category:</label><input id="category" type="text" name="category">
 <button type="button" id="getCategory"> get todos in this category</button>
 
+<button id="applyAll"> apply all of these filters</button>
+
 <script>
   window.onload = function () {
     console.log("The page is loaded now!");
@@ -48,6 +50,9 @@
 
     element = document.getElementById('getCategory');
     element.addEventListener("click", getCategoryTodos, true);
+
+    element = document.getElementById('applyAll');
+    element.addEventListener("click", applyAllFilters, true);
   }
 </script>
 </body>

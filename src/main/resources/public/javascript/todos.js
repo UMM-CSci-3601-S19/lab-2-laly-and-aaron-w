@@ -49,6 +49,45 @@ function getOwnerTodos() {
   });
 }
 
+function applyAllFilters() {
+  console.log("Apply all filters.");
+  var HttpThingy = new HttpClient();
+  var path = "/api/todos";
+  var count = 0;
+  if (document.getElementById("limit").value.toString() !== "") {
+    path += determineCharacter(count) + "limit=" + document.getElementById("limit").value;
+    count += 1;
+  }
+  if (document.getElementById("status").value.toString() !== "") {
+    path += determineCharacter(count) + "status=" + document.getElementById("status").value;
+    count += 1;
+  }
+  if (document.getElementById("owner").value.toString() !== "") {
+    path += determineCharacter(count) + "owner=" + document.getElementById("owner").value;
+    count += 1;
+  }
+  if (document.getElementById("category").value.toString() !== "") {
+    path += determineCharacter(count) + "category=" + document.getElementById("category").value;
+    count += 1
+
+  }
+  if (document.getElementById("contains").value.toString() !== "") {
+    path += determineCharacter(count) + "contains=" + document.getElementById("contains").value;
+    count += 1
+  }
+  /*if (document.getElementById("orderBy").value.toString() !== "") {
+    path += "?orderBy=" + document.getElementById("orderBy").value
+  }*/
+  HttpThingy.get(path, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
+function determineCharacter(n) {
+  if (n === 0) return "?";
+  else return "&";
+}
+
 function HttpClient() {
   // We'll take a URL string, and a callback function.
   this.get = function (aUrl, aCallback) {
