@@ -30,4 +30,23 @@ public class GetStatusTodosFromDB {
       assertEquals(true, todo.status.equals(false));
     }
   }
+
+  @Test
+  public void getStatusTodos() throws IOException {
+    TodosDatabase db = new TodosDatabase("src/main/data/todos.json");
+    Todo[] allTodos = db.listTodos(new HashMap<>());
+
+    Todo[] incompleteTodos = db.getTodosByStatus(allTodos, false);
+    for (Todo todo:incompleteTodos) {
+      assertEquals(true, todo.status.equals(false));
+    }
+    assertEquals(157, incompleteTodos.length);
+
+    Todo[] completeTodos = db.getTodosByStatus(allTodos, true);
+    for (Todo todo:completeTodos) {
+      assertEquals(true, todo.status.equals(true));
+    }
+    assertEquals(143, completeTodos.length);
+  }
+
 }
