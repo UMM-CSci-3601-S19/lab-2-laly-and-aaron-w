@@ -7,7 +7,7 @@ public class Todo {
   String body;
   String category;
 
-  public String getField(String field) {
+  public String getField(String field) { //This method doesn't do anything, it's left to show what we tried
     if (field.equals("owner")) {
       return this.owner;
     } else if (field.equals("body")) {

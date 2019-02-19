@@ -71,11 +71,11 @@ public class TodosDatabase {
     return Arrays.stream(todos).filter(x -> x.category.equals(category)).toArray(Todo[]::new);
   }
 
-  public Todo[] getCompleteTodos(Todo[] todos) {
+  public Todo[] getCompleteTodos(Todo[] todos) { //This method doesn't do anything, it's left to show what we tried
     return Arrays.stream(todos).filter(x -> x.status).toArray(Todo[]::new);
   }
 
-  public Todo[] getIncompleteTodos(Todo[] todos) {
+  public Todo[] getIncompleteTodos(Todo[] todos) { //This method doesn't do anything, it's left to show what we tried
     return Arrays.stream(todos).filter(x -> !x.status).toArray(Todo[]::new);
   }
 
