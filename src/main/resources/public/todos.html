@@ -18,6 +18,9 @@
 <label for="contains">contains:</label><input id="contains" type="text" name="contains">
 <button type="button" id="searchBody"> search todo body</button>
 
+<label for="status">status:</label><input id="status" type="text" name="status">
+<button type="button" id="getStatus"> get the status of todos</button>
+
 <script>
   window.onload = function () {
     console.log("The page is loaded now!");
@@ -30,6 +33,9 @@
 
     element = document.getElementById('searchBody');
     element.addEventListener("click", getBodyString, true);
+
+    element = document.getElementById('getStatus');
+    element.addEventListener("click", getStatusTodos, true);
   }
 </script>
 </body>

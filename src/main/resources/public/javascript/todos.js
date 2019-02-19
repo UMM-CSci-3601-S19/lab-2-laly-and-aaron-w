@@ -25,6 +25,14 @@ function getBodyString() {
   });
 }
 
+function getStatusTodos() {
+  console.log("Get todos by status.");
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?status=" + document.getElementById("status").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
 function HttpClient() {
   // We'll take a URL string, and a callback function.
   this.get = function (aUrl, aCallback) {
