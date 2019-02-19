@@ -25,6 +25,30 @@ function getBodyString() {
   });
 }
 
+function getStatusTodos() {
+  console.log("Get todos by status.");
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?status=" + document.getElementById("status").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
+function getCategoryTodos() {
+  console.log("Get todos by category.");
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?category=" + document.getElementById("category").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
+function getOwnerTodos() {
+  console.log("Get todos by owner.");
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?owner=" + document.getElementById("owner").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
 function HttpClient() {
   // We'll take a URL string, and a callback function.
   this.get = function (aUrl, aCallback) {
