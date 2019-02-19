@@ -1,6 +1,8 @@
 package umm3601.todos;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 import com.google.gson.Gson;
 
@@ -47,6 +49,9 @@ public class TodosDatabase {
       long limit = Long.parseLong(queryParams.get("limit")[0]);
       filteredTodos = getTodosByLimit(filteredTodos, limit);
     }
+    if (queryParams.containsKey("orderBy")) {
+      filteredTodos = orderTodosByField(filteredTodos, queryParams.get("orderBy")[0]);
+    }
     return filteredTodos;
   }
 
@@ -80,6 +85,34 @@ public class TodosDatabase {
     } else {
       return Arrays.stream(todos).filter(x -> !x.status).toArray(Todo[]::new);
     }
+  }
+
+  public Todo[] orderTodosByField(Todo[] todos, String field) {
+    if (field.equals("owner")) {
+      return orderTodosByOwner(todos);
+    } else if (field.equals("category")) {
+      return orderTodosByCategory(todos);
+    } else if (field.equals("status")) {
+      return orderTodosByStatus(todos);
+    } else if (field.equals("body")) {
+      return orderTodosByBody(todos);
+    } else return todos;
+  }
+
+  public Todo[] orderTodosByOwner(Todo[] todos) {
+    return Arrays.stream(todos).sorted((Todo todo1, Todo todo2) -> todo1.getOwner().compareTo(todo2.getOwner())).toArray(Todo[]::new);
+  }
+
+  public Todo[] orderTodosByCategory(Todo[] todos) {
+    return Arrays.stream(todos).sorted(Comparator.comparing(Todo::getCategory)).toArray(Todo[]::new);
+  }
+
+  public Todo[] orderTodosByStatus(Todo[] todos) {
+    return Arrays.stream(todos).sorted(Comparator.comparing(Todo::getStatus)).toArray(Todo[]::new);
+  }
+
+  public Todo[] orderTodosByBody(Todo[] todos) {
+    return Arrays.stream(todos).sorted(Comparator.comparing(Todo::getBody)).toArray(Todo[]::new);
   }
 
 }

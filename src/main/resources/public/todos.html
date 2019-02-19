@@ -27,6 +27,9 @@
 <label for="category">category:</label><input id="category" type="text" name="category">
 <button type="button" id="getCategory"> get todos in this category</button>
 
+<label for="orderBy">ordered by:</label><input id="orderBy" type="text" name="orderBy">
+<button type="button" id="getOrdered"> get todos ordered alphabetically by this field</button>
+
 <button id="applyAll"> apply all of these filters</button>
 
 <script>
@@ -50,6 +53,9 @@
 
     element = document.getElementById('getCategory');
     element.addEventListener("click", getCategoryTodos, true);
+
+    element = document.getElementById('getOrdered');
+    element.addEventListener("click", getOrderedTodos, true);
 
     element = document.getElementById('applyAll');
     element.addEventListener("click", applyAllFilters, true);

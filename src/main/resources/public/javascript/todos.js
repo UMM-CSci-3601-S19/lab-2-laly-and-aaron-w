@@ -49,6 +49,14 @@ function getOwnerTodos() {
   });
 }
 
+function getOrderedTodos() {
+  console.log("Get todos ordered by field.");
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?orderBy=" + document.getElementById("orderBy").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
 function applyAllFilters() {
   console.log("Apply all filters.");
   var HttpThingy = new HttpClient();
