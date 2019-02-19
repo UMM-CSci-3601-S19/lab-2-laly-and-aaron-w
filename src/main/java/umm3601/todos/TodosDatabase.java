@@ -26,7 +26,12 @@ public class TodosDatabase {
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodos = allTodos;
     if (queryParams.containsKey("status")) {
-      boolean status = Boolean.parseBoolean(queryParams.get("status")[0]);
+      boolean status;
+      if (queryParams.get("status")[0].equals("complete")) {
+        status = true;
+      } else {
+        status = false;
+      }
       filteredTodos = getTodosByStatus(filteredTodos, status);
     }
     if (queryParams.containsKey("contains")) {
