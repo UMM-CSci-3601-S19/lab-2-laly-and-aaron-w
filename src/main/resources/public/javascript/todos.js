@@ -83,9 +83,9 @@ function applyAllFilters() {
     path += determineCharacter(count) + "contains=" + document.getElementById("contains").value;
     count += 1
   }
-  /*if (document.getElementById("orderBy").value.toString() !== "") {
-    path += "?orderBy=" + document.getElementById("orderBy").value
-  }*/
+  if (document.getElementById("orderBy").value.toString() !== "") {
+    path += determineCharacter(count) + "orderBy=" + document.getElementById("orderBy").value
+  }
   HttpThingy.get(path, function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
