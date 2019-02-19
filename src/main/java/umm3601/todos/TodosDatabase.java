@@ -1,6 +1,8 @@
 package umm3601.todos;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 import com.google.gson.Gson;
 
@@ -39,6 +41,17 @@ public class TodosDatabase {
 
   public Todo[] getTodosByBodyString(Todo[] todos, String search) {
     return Arrays.stream(todos).filter(x -> x.body.contains(search)).toArray(Todo[]::new);
+  }
+
+  public Todo[] orderTodosByField(Todo[] todos, String field) {
+    if (field == "owner") {
+
+    }
+    return todos;
+  }
+
+  public Todo[] orderTodosByOwner(Todo[] todos) {
+    return todos;
   }
 
 }
